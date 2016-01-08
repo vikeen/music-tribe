@@ -1,11 +1,20 @@
 /**
  * Test environment settings
- * @description :: This section overrides all other config values ONLY in test environment
+ * @description :: This section overrides all other config values ONLY in test
+ *     environment
  */
 
 export default {
   log: {
     level: 'silent'
+  },
+  connections: {
+    memory: {
+      adapter: 'sails-memory'
+    },
+    disk: {
+      adapter: 'sails-disk'
+    }
   },
   models: {
     connection: 'memory',

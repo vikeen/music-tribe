@@ -10,35 +10,5 @@
  * in `config/local.js`, environment variables, or use another strategy.
  */
 
-export default {
-  connections: {
-    postgresql: {
-      adapter: 'sails-postgresql',
-      database: 'music_tribe',
-      host: '172.17.8.150',
-      user: 'music_tribe_user',
-      password: 'password',
-      port: 5432,
-      pool: false,
-      ssl: false
-    },
+export default {}
 
-    /**
-     * Memory configuration
-     * ONLY FOR DEVELOPMENT
-     * @type {Object}
-     */
-    memory: {
-      adapter: 'sails-memory'
-    },
-
-    /**
-     * Disk configuration
-     * ONLY FOR DEVELOPMENT
-     * @type {Object}
-     */
-    disk: {
-      adapter: 'sails-disk'
-    }
-  }
-}

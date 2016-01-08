@@ -27,8 +27,8 @@ export default {
 
   http: {
     /**
-     * This is the options object for the `createServer` method, as discussed here:
-     * http://nodejs.org/api/https.html#https_class_https_server
+     * This is the options object for the `createServer` method, as discussed
+     * here: http://nodejs.org/api/https.html#https_class_https_server
      *
      * @type {Object|Boolean}
      */
@@ -71,11 +71,16 @@ export default {
        * @type {Array}
        */
       order: [
+        'startRequestTimer',
+        'cookieParser',
+        'session',
         'compress',
         'keepAlive',
         'bodyParser',
         '$custom',
         'router',
+        'www',
+        'favicon',
         '404',
         '500'
       ]

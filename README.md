@@ -11,5 +11,5 @@ GRANT ALL ON DATABASE music_tribe to music_tribe_user;
 ```
 ```shell
 npm install
-npm start
+NODE_ENV=development npm start
 ```

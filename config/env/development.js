@@ -9,9 +9,6 @@ export default {
   log: {
     level: 'verbose'
   },
-  models: {
-    connection: 'postgresql'
-  },
   connections: {
     postgresql: {
       adapter: 'sails-postgresql',
@@ -23,5 +20,8 @@ export default {
       pool: false,
       ssl: false
     }
+  },
+  models: {
+    connection: 'postgresql'
   }
 };

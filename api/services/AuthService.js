@@ -10,6 +10,7 @@ import passport from 'passport';
  * Sign in by email\password
  * @param req
  * @param res
+ * @param next
  */
 export function signin(req, res, next) {
   passport.authenticate('local', function (err, user, info) {

@@ -15,6 +15,7 @@
     "bootstrap": "3.3.6",
     "forwarded": "0.1.0",
     "hoek": "3.0.4",
+    "jquery": "2.2.0",
     "lodash": "3.10.1",
     "passport": "0.3.2",
     "passport-amazon-token": "2.0.1",

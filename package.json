@@ -12,6 +12,7 @@
   "dependencies": {
     "babel": "5.8.23",
     "bluebird": "3.1.1",
+    "bootstrap": "3.3.6",
     "forwarded": "0.1.0",
     "hoek": "3.0.4",
     "lodash": "3.10.1",

@@ -1,0 +1,14 @@
+<div class="form-group form-notification-box">
+  <% if (messages && messages.error.length) { %>
+  <div class="alert alert-danger" role="alert">
+    <ul class="form-notification-box__notifications">
+      <% for(var i = 0; i < messages.error.length; i++) { %>
+      <li>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <%= messages.error[i].message %>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+  <% } %>
+</div>

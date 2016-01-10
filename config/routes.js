@@ -25,6 +25,7 @@ export default {
     'GET /': 'HomeController.index',
     'GET /dashboard': 'UserController.dashboard',
     'GET /login': 'UserController.login',
+    'GET /logout': 'UserController.logout',
     'POST /signin': 'UserController.signin',
     'GET /register': 'UserController.register',
     'POST /register': 'UserController.create'

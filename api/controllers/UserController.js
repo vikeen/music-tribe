@@ -29,6 +29,12 @@ export function login(req, res, next) {
   res.view('login');
 }
 
+export function logout(req, res, next) {
+  AuthService.signout(req, res, (e) => {
+    return res.redirect('/');
+  });
+}
+
 export function signin(req, res, next) {
   AuthService.signin(req, res, function (err, response) {
     if (err) {

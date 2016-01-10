@@ -29,6 +29,20 @@ export function signin(req, res, next) {
   })(req, res, next);
 }
 
+export function signout(req, res, next) {
+  try {
+    req.user = false;
+    res.locals.user = false;
+    res.cookie('music-tribe.sid', null, {maxAge: 0});
+  } catch (e) {
+    sails.log.error("unable to sign user out");
+    sails.log.error(e);
+    return next(e);
+  }
+
+  return next(null);
+}
+
 /**
  * Sign up by email\password
  * @param req

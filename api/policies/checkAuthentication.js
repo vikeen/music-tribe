@@ -6,7 +6,8 @@
 import passport from 'passport';
 
 export default function (req, res, next) {
-  res.locals.user = null;
+  req.user = false;
+  res.locals.user = false;
 
   /*
    * If the user has a cookie value then attach it as a authorization header

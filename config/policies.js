@@ -20,11 +20,6 @@ export default {
   policies: {
     '*': ['checkAuthentication', 'flash'],
 
-    UserController: {
-      'login': ['flash'],
-      'signin': ['flash'],
-      'create': ['flash'],
-      'register': ['flash']
-    }
+    UserController: {}
   }
 }

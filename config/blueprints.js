@@ -15,20 +15,20 @@ export default {
      * When enabled, GET, POST, PUT and DELETE routes will be generated for everyone of a controller's actions
      * @type {Boolean}
      */
-    actions: true,
+    actions: false,
 
     /**
      * When enabled, `index` action will be default action
      * @type {Boolean}
      */
-    index: true,
+    index: false,
 
     /**
      * REST blueprints are the automatically generated routes Sails uses to expose a conventional REST API
      * on top of a controller's `find`, `findOne`, `create`, `update`, and `destroy` actions
      * @type {Boolean}
      */
-    rest: true,
+    rest: false,
 
     /**
      * Shortcut routes are simple helpers to provide access to a controller's CRUD methods from your browser's URL bar

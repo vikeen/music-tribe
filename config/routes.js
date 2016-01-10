@@ -22,8 +22,13 @@
 
 export default {
   routes: {
-    '/': {
+    'GET /': {
       view: 'homepage'
-    }
+    },
+    'GET /dashboard': 'UserController.dashboard',
+    'GET /login': 'UserController.login',
+    'POST /signin': 'UserController.signin',
+    'GET /register': 'UserController.register',
+    'POST /register': 'UserController.create'
   }
 }

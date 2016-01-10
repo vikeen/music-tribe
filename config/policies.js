@@ -18,10 +18,13 @@ export default {
    *                                                                          *
    ***************************************************************************/
   policies: {
-    '*': ['isAuthenticated'],
+    '*': ['isAuthenticated', 'flash'],
 
-    AuthController: {
-      '*': true
+    UserController: {
+      'login': ['flash'],
+      'signin': ['flash'],
+      'create': ['flash'],
+      'register': ['flash']
     }
   }
 }

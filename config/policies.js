@@ -18,7 +18,7 @@ export default {
    *                                                                          *
    ***************************************************************************/
   policies: {
-    '*': ['isAuthenticated', 'flash'],
+    '*': ['checkAuthentication', 'flash'],
 
     UserController: {
       'login': ['flash'],

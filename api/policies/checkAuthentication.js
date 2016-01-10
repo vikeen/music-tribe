@@ -6,6 +6,7 @@
 import passport from 'passport';
 
 export default function (req, res, next) {
+  res.locals.user = null;
 
   /*
    * If the user has a cookie value then attach it as a authorization header
@@ -13,24 +14,27 @@ export default function (req, res, next) {
    */
   if (req.cookies["music-tribe.sid"]) {
     req.headers["authorization"] = "JWT " + req.cookies["music-tribe.sid"];
-  }
 
-  passport.authenticate('jwt', (error, user, info) => {
-    error = error || info;
+    passport.authenticate('jwt', (error, user, info) => {
+      error = error || info;
 
-    if (error) {
-      sails.log.error(error);
+      if (error) {
+        sails.log.error(error);
+        next();
+      }
+
+      if (!user) {
+        sails.log.error("Unable to authenticate user from jwt token");
+        next();
+      }
+
+      sails.log.verbose("Successful jwt authentication for [user.id: " + user.id + "]");
+      req.user = user;
+      res.locals.user = user;
+
       next();
-    }
-
-    if (!user) {
-      sails.log.error("Unable to authenticate user from jwt token");
-      next();
-    }
-
-    req.user = user;
-    sails.log.verbose("Successful jwt authentication for [user.id: " + req.user.id + "]");
-
+    })(req, res);
+  } else {
     next();
-  })(req, res);
+  }
 }

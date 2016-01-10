@@ -9,9 +9,7 @@ export default {
   attributes: {
     username: {
       type: 'string',
-      required: true,
-      unique: true,
-      alphanumericdashed: true
+      defaultsTo: ''
     },
 
     password: {
@@ -56,8 +54,13 @@ export default {
   },
 
   beforeUpdate(values, next) {
-    if (false === values.hasOwnProperty('password')) return next();
-    if (/^\$2[aby]\$[0-9]{2}\$.{53}$/.test(values.password)) return next();
+    if (values.hasOwnProperty('password') === false) {
+      return next();
+    }
+
+    if (/^\$2[aby]\$[0-9]{2}\$.{53}$/.test(values.password)) {
+      return next();
+    }
 
     return HashService.bcrypt.hash(values.password)
       .then(hash => {
@@ -68,7 +71,9 @@ export default {
   },
 
   beforeCreate(values, next) {
-    if (false === values.hasOwnProperty('password')) return next();
+    if (values.hasOwnProperty('password') === false) {
+      return next();
+    }
 
     return HashService.bcrypt.hash(values.password)
       .then(hash => {

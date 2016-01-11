@@ -11,9 +11,7 @@ export default {
   connections: {
     postgresql: {
       adapter: 'sails-postgresql',
-      url: process.env.MUSIC_TRIBE_TEST_DATABASE_URL,
-      pool: false,
-      ssl: false
+      url: process.env.DATABASE_URL
     }
   },
   models: {

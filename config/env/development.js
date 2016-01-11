@@ -12,11 +12,7 @@ export default {
   connections: {
     postgresql: {
       adapter: 'sails-postgresql',
-      database: 'music_tribe',
-      host: '172.17.8.150',
-      user: 'music_tribe_user',
-      password: 'password',
-      port: 5432,
+      url: process.env.MUSIC_TRIBE_DEVELOPMENT_DATABASE_URL,
       pool: false,
       ssl: false
     }

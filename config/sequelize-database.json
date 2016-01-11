@@ -1,17 +1,9 @@
 {
   "development": {
-    "username": "music_tribe_user",
-    "password": "password",
-    "database": "music_tribe",
-    "host": "172.17.8.150",
-    "dialect": "postgres"
+    "use_env_variable": "MUSIC_TRIBE_DEVELOPMENT_DATABASE_URL"
   },
   "test": {
-    "username": "music_tribe_user",
-    "password": "password",
-    "database": "music_tribe_test",
-    "host": "172.17.8.150",
-    "dialect": "postgres"
+    "use_env_variable": "MUSIC_TRIBE_TEST_DATABASE_URL"
   },
   "travis": {
     "use_env_variable": "DATABASE_URL"

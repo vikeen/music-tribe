@@ -19,27 +19,25 @@ export function create(req, res, next) {
       return res.serverError(error);
     }
 
-    return res.json({
-      message: updoadedFiles.length + ' file(s) uploaded successfully!',
-      files: updoadedFiles
+    let assets = updoadedFiles.map(function(file) {
+      return {
+        userId: req.user.id,
+        fileName: file.filename,
+        type: file.type,
+        url: file.extra.Location,
+        uuid: file.extra.Key,
+        size: file.size
+      };
+    });
+
+    ArtistsAssets.create(assets)
+    .then(function() {
+      sails.log.verbose("successfully added assets");
+      return res.redirect("/dashboard");
+    })
+    .catch((e) => {
+      sails.log.error(e);
+      return res.serverError();
     });
   });
-}
-
-//Content-Type: audio/mpeg"
-//Content-Disposition: filename="music.mp3"'
-
-function getContentTypeByFile(fileName) {
-  var rc = 'application/octet-stream';
-  var fn = fileName.toLowerCase();
-
-  if (fn.indexOf('.html') >= 0) rc = 'text/html';
-  else if (fn.indexOf('.css') >= 0) rc = 'text/css';
-  else if (fn.indexOf('.json') >= 0) rc = 'application/json';
-  else if (fn.indexOf('.js') >= 0) rc = 'application/x-javascript';
-  else if (fn.indexOf('.png') >= 0) rc = 'image/png';
-  else if (fn.indexOf('.jpg') >= 0) rc = 'image/jpg';
-  else if (fn.indexOf('.mp3') >= 0) rc = 'audio/mpeg3';
-
-  return rc;
 }

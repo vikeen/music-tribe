@@ -1,14 +1,29 @@
 <div class="container">
   <h1>This is the user's dashboard</h1>
 
-  <h2>Upload a song</h2>
-  <form class="form" method="POST" action="/file" enctype="multipart/form-data">
-    <div class="form-group">
-      <input id="song" name="song" type="file" placeholder="Add Song" multiple="multiple">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h2>Upload a song</h2>
+      <form class="form" method="POST" action="/file" enctype="multipart/form-data">
+        <div class="form-group">
+          <input id="song" name="song" type="file" placeholder="Add Song" multiple="multiple">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Upload</button>
+    <div class="col-xs-12 col-sm-6">
+      <% if(artistsAssets) { %>
+      <ul>
+        <% for(var i = 0; i < artistsAssets.length; i++) { %>
+        <li>
+          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+          <a href="<%= artistsAssets[i].url %>"><%= artistsAssets[i].fileName %></a>
+        </li>
+        <% } %>
+      </ul>
+      <% } %>
     </div>
-  </form>
-
+  </div>
 </div>

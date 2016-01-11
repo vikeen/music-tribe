@@ -53,5 +53,14 @@ export function signin(req, res, next) {
 export function dashboard(req, res, next) {
   sails.log.verbose("UsersController.dashboard()");
 
-  return res.view("dashboard");
+  ArtistsAssets.find({userId: req.user.id})
+    .then(artistsAssets => {
+      return res.view("dashboard", {
+        artistsAssets: artistsAssets
+      });
+    })
+    .catch(e => {
+      sails.log.error(e);
+      return res.serverError();
+    });
 }

@@ -50,7 +50,7 @@ export default {
       delete obj.socialProfiles;
 
       return obj;
-    }
+    },
   },
 
   beforeUpdate(values, next) {

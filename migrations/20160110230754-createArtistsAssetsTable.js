@@ -13,9 +13,11 @@ module.exports = {
         model: "users",
         key: "id"
       },
-      assestId: {type: Sequelize.STRING, allowNull: true},
-      assestType: {type: Sequelize.STRING, allowNull: true},
-      assestEncoding: {type: Sequelize.STRING, allowNull: true},
+      size: {type: Sequelize.INTEGER, allowNull: false},
+      uuid: {type: Sequelize.STRING, allowNull: false},
+      type: {type: Sequelize.STRING, allowNull: false},
+      fileName: {type: Sequelize.STRING, allowNull: false},
+      url: {type: Sequelize.STRING, allowNull: false},
       createdAt: {type: Sequelize.DATE, allowNull: true},
       updatedAt: {type: Sequelize.DATE, allowNull: true}
     });

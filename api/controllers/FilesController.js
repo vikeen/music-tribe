@@ -43,25 +43,3 @@ function getContentTypeByFile(fileName) {
 
   return rc;
 }
-
-function uploadAudio(folderName) {
-  var CODE_PATH = 'resources/audio/';
-  var fileList = getFileList('./' + CODE_PATH + folderName + '/');
-
-  fileList.forEach(function (entry) {
-    uploadFile(CODE_PATH + folderName + '/' + entry,
-      './' + CODE_PATH + folderName + '/' + entry);
-  });
-}
-
-function getFileList(path) {
-  var i, fileInfo, filesFound;
-  var fileList = [];
-
-  filesFound = fs.readdirSync(path);
-  for (i = 0; i < filesFound.length; i++) {
-    fileInfo = fs.lstatSync(path + filesFound[i]);
-    if (fileInfo.isFile()) fileList.push(filesFound[i]);
-  }
-  return fileList;
-}

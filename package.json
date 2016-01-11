@@ -50,6 +50,8 @@
     "sails-service-payment": "3.0.3",
     "sails-service-pusher": "3.1.0",
     "sails-service-social": "3.0.1",
+    "sequelize": "3.17.1",
+    "sequelize-cli": "2.2.1",
     "stripe": "4.1.0"
   },
   "devDependencies": {

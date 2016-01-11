@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-      <h2>Upload a song</h2>
+      <h2>Upload Assets</h2>
       <form class="form" method="POST" action="/file" enctype="multipart/form-data">
         <div class="form-group">
           <input id="song" name="song" type="file" placeholder="Add Song" multiple="multiple">
@@ -14,6 +14,7 @@
       </form>
     </div>
     <div class="col-xs-12 col-sm-6">
+      <h2>Current Assets</h2>
       <% if(artistsAssets) { %>
       <ul>
         <% for(var i = 0; i < artistsAssets.length; i++) { %>

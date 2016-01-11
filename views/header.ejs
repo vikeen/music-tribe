@@ -15,6 +15,7 @@
         <!--<ul class="nav navbar-nav"></ul>-->
         <ul class="nav navbar-nav navbar-right">
           <% if (user) { %>
+          <li><a href="/dashboard"><%- user.email %></a></li>
           <li><a href="/logout"><%- __('Logout') %></a></li>
           <% } else { %>
           <li><a href="/login"><%- __('Login') %></a></li>

@@ -1,17 +1,17 @@
-/*
+/**
+ * Amazon Configuration
+ *
+ * These settings are for any configuration related to amazon
  *
  */
+
 export default {
   aws: {
     s3: {
-      accessKeyId: "AKIAJY4UPENZOM6R7Y5Q",
-      secretAccessKey: "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",
-      region: "us-west-2",
-      apiVersion: "2006-03-01"
+      accessKeyId: process.env.MUSIC_TRIBE_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.MUSIC_TRIBE_AWS_SECRET_ACCESS_KEY,
+      region: process.env.MUSIC_TRIBE_AWS_REGION,
+      apiVersion: process.env.MUSIC_TRIBE_API_VERSION
     }
   }
 }
-
-
-//AWS_ACCESS_KEY_ID
-//AWS_SECRET_ACCESS_KEY

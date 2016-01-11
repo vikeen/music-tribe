@@ -3,10 +3,12 @@
  * @description :: Server-side logic for manage users
  */
 
+import fs from 'fs';
 import _ from 'lodash';
+import AWS from 'aws-sdk';
 
 export function register(req, res, next) {
-  res.view('register');
+  return res.view('register');
 }
 
 export function create(req, res, next) {
@@ -50,5 +52,6 @@ export function signin(req, res, next) {
 
 export function dashboard(req, res, next) {
   sails.log.verbose("UsersController.dashboard()");
-  return res.json(req.user);
+
+  return res.view("dashboard");
 }

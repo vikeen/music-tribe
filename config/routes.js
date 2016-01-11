@@ -28,6 +28,8 @@ export default {
     'GET /logout': 'UsersController.logout',
     'POST /signin': 'UsersController.signin',
     'GET /register': 'UsersController.register',
-    'POST /register': 'UsersController.create'
+    'POST /register': 'UsersController.create',
+
+    'POST /file': 'FilesController.create'
   }
 }

@@ -10,6 +10,7 @@
     "node": "5.3.0"
   },
   "dependencies": {
+    "aws-sdk": "2.2.28",
     "babel": "5.8.23",
     "bluebird": "3.1.1",
     "bootstrap": "3.3.6",
@@ -20,21 +21,11 @@
     "passport": "0.3.2",
     "passport-amazon-token": "2.0.1",
     "passport-facebook-token": "3.1.0",
-    "passport-foursquare-token": "2.0.1",
-    "passport-github-token": "2.0.1",
     "passport-google-plus-token": "2.0.1",
-    "passport-instagram-token": "2.2.1",
     "passport-jwt": "1.2.1",
     "passport-local": "1.0.0",
-    "passport-paypal-token": "2.0.1",
-    "passport-reddit-token": "2.0.1",
     "passport-soundcloud-token": "2.0.1",
-    "passport-twitch-token": "2.0.1",
     "passport-twitter-token": "1.1.0",
-    "passport-vkontakte-token": "2.0.1",
-    "passport-windows-live-token": "2.0.1",
-    "passport-yahoo-token": "2.0.1",
-    "passport-yandex-token": "2.0.1",
     "pluralize": "1.2.1",
     "rc": "1.1.2",
     "sails": "0.11.2",
@@ -52,7 +43,8 @@
     "sails-service-social": "3.0.1",
     "sequelize": "3.17.1",
     "sequelize-cli": "2.2.1",
-    "stripe": "4.1.0"
+    "skipper": "0.5.9",
+    "skipper-s3": "0.5.6"
   },
   "devDependencies": {
     "babel": "5.8.23",

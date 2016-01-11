@@ -14,10 +14,12 @@ export function create(req, res, next) {
 
   sails.log.info('AuthService.signup(). Creating user');
 
-  return User.create(values)
-    .then(AuthService.signin)
-    .then(function () {
-      return res.redirect('/dashboard');
+  return Users.create(values)
+    .then(() => {
+      AuthService.signin((e, jwt) => {
+        sails.log.info('User created successfully. Redirecting to /dashboard');
+        return res.redirect('/dashboard');
+      });
     })
     .catch((e) => {
       req.session.messages.error = _.flatten(_.values(e.invalidAttributes));
@@ -47,6 +49,6 @@ export function signin(req, res, next) {
 }
 
 export function dashboard(req, res, next) {
-  sails.log.verbose("UserController.dashboard()");
+  sails.log.verbose("UsersController.dashboard()");
   return res.json(req.user);
 }

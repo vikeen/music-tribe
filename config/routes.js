@@ -23,11 +23,11 @@
 export default {
   routes: {
     'GET /': 'HomeController.index',
-    'GET /dashboard': 'UserController.dashboard',
-    'GET /login': 'UserController.login',
-    'GET /logout': 'UserController.logout',
-    'POST /signin': 'UserController.signin',
-    'GET /register': 'UserController.register',
-    'POST /register': 'UserController.create'
+    'GET /dashboard': 'UsersController.dashboard',
+    'GET /login': 'UsersController.login',
+    'GET /logout': 'UsersController.logout',
+    'POST /signin': 'UsersController.signin',
+    'GET /register': 'UsersController.register',
+    'POST /register': 'UsersController.create'
   }
 }

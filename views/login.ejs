@@ -1,18 +1,22 @@
 <div class="container">
-  <form class="form" method="POST" action="/signin">
-    <legend>Login</legend>
-    <% include _csrf.ejs %>
-    <div class="form-group">
-      <label for="email" class="form-label"><%= __('Email') %></label>
-      <input type="email" id="email" name="email" class="form-control">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+      <form class="form" method="POST" action="/signin">
+        <legend>Login</legend>
+        <% include _csrf.ejs %>
+        <div class="form-group">
+          <label for="email" class="form-label"><%= __('Email') %></label>
+          <input type="email" id="email" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label"><%= __('Password') %></label>
+          <input type="password" id="password" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default"><%= __('Login') %></button>
+        </div>
+        <% include _form-errors.ejs %>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="password" class="form-label"><%= __('Password') %></label>
-      <input type="password" id="password" name="password" class="form-control">
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-default"><%= __('Login') %></button>
-    </div>
-    <% include _form-errors.ejs %>
-  </form>
+  </div>
 </div>

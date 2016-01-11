@@ -9,15 +9,19 @@ export default {
     level: 'silent'
   },
   connections: {
-    memory: {
-      adapter: 'sails-memory'
-    },
-    disk: {
-      adapter: 'sails-disk'
+    postgresql: {
+      adapter: 'sails-postgresql',
+      database: 'music_tribe_test',
+      host: '172.17.8.150',
+      user: 'music_tribe_user',
+      password: 'password',
+      port: 5432,
+      pool: false,
+      ssl: false
     }
   },
   models: {
-    connection: 'memory',
+    connection: 'postgresql',
     migrate: 'drop'
   },
   policies: {

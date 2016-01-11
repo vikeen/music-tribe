@@ -4,7 +4,7 @@ describe('controllers:PingController', () => {
   it('Should return message that HTTP server is working', done => {
     sails.request({
       method: 'GET',
-      url: '/v1/ping'
+      url: '/ping'
     }, (error, res, body) => {
       if (error) return done(error);
 

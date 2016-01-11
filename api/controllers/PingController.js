@@ -4,5 +4,5 @@
  */
 
 export function index(req, res) {
-  res.ok(req.allParams(), {message: 'HTTP server is working'});
+  return res.ok({message: 'HTTP server is working'}, {});
 }

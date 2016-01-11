@@ -30,6 +30,8 @@ export default {
     'GET /register': 'UsersController.register',
     'POST /register': 'UsersController.create',
 
-    'POST /file': 'FilesController.create'
+    'POST /file': 'FilesController.create',
+
+    'GET /ping': 'PingController.index'
   }
 }

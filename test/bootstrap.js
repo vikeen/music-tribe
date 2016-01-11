@@ -1,15 +1,23 @@
-import Sails from 'sails';
-import config from '../config/env/test';
-
+import Sails from 'sails'
 let sails;
 
-before(done => {
-  Sails.lift(config, (error, server) => {
-    if (error) return done(error);
+before(function (done) {
 
+  // Increase the Mocha timeout so that Sails has enough time to lift.
+  this.timeout(5000);
+
+  Sails.lift({}, function (err, server) {
     sails = server;
-    done();
+    if (err) {
+      return done(err);
+    }
+
+    // here you can load fixtures, etc.
+    done(err, sails);
   });
 });
 
-after(done => sails.lower(done));
+after(function (done) {
+  // here you can clear fixtures, etc.
+  Sails.lower(done);
+});

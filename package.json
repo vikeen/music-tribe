@@ -60,6 +60,6 @@
     "debug": "node debug app.js",
     "docs": "esdoc -c esdoc.json",
     "start": "node app.js",
-    "test": "babel-node node_modules/.bin/isparta cover _mocha"
+    "test": "NODE_ENV=test babel-node node_modules/.bin/isparta cover _mocha"
   }
 }

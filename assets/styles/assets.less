@@ -1,0 +1,60 @@
+/*------------------------\
+  #ASSET
+\------------------------*/
+
+@assetHeight: 325px;
+@assetHeightLg: 250px;
+
+.asset {
+  min-height: @assetHeight;
+
+  .panel-body {
+    padding: 0;
+  }
+}
+
+.asset__header {
+}
+
+.asset__content {
+  .asset__wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* [1] */
+    padding-top: 25px;
+    height: @assetHeight;
+    overflow: hidden;
+
+    img, video, audio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: none;
+      min-height: 100%; /* [2] */
+    }
+  }
+}
+
+.asset__footer {
+  font-size: 16px;
+
+  .asset__metadata {
+
+  }
+
+  .asset__social {
+    text-align: right;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .asset {
+    min-height: @assetHeightLg
+  }
+
+  .asset__content {
+    .asset__wrapper {
+      height: @assetHeightLg;
+    }
+  }
+}

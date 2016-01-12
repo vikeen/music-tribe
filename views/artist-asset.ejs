@@ -1,0 +1,40 @@
+<article class="asset panel panel-default">
+  <header class="asset__header panel-heading">
+    <%- asset.fileName %>
+  </header>
+  <main class="asset__content panel-body">
+    <div class="asset__wrapper">
+      <% if (asset.type === 'image/jpeg' ||
+        asset.type === 'image/gif' ||
+        asset.type === 'image/png') { %>
+      <img src="<%- asset.url %>"/>
+      <% } else if ( asset.type === 'audio/mp3' ) { %>
+      <audio preload="metadata" controls>
+        <source src="<%- asset.url %>" type="<%- asset.type %>">
+      </audio>
+      <% } else if ( asset.type === 'video/mp4' ) { %>
+      <video preload="metadata" controls>
+        <source src="<%- asset.url %>" type="<%- asset.type %>">
+      </video>
+      <% } %>
+    </div>
+  </main>
+  <footer class="asset__footer panel-footer">
+    <div class="row">
+      <div class="col-xs-6 asset__metadata">
+        <% if (asset.type === 'image/jpeg' ||
+          asset.type === 'image/gif' ||
+          asset.type === 'image/png') { %>
+        <span class="glyphicon glyphicon-camera"></span>
+        <% } else if ( asset.type === 'audio/mp3' ) { %>
+        <span class="glyphicon glyphicon-music"></span>
+        <% } else if ( asset.type === 'video/mp4' ) { %>
+        <span class="glyphicon glyphicon-facetime-video"></span>
+        <% } %>
+      </div>
+      <div class="col-xs-6 asset__social">
+        <a href="#"><span class="glyphicon glyphicon-heart"></span></a>
+      </div>
+    </div>
+  </footer>
+</article>

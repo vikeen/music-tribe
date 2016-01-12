@@ -32,7 +32,7 @@ export function create(req, res, next) {
       };
     });
 
-    ArtistsAssets.create(assets)
+    ArtistAsset.create(assets)
       .then(function () {
         sails.log.verbose("successfully added assets");
         return res.redirect("/dashboard");

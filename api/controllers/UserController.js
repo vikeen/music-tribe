@@ -7,20 +7,20 @@ import fs from 'fs';
 import _ from 'lodash';
 import AWS from 'aws-sdk';
 
-export function register(req, res, next) {
-  return res.view('register');
-}
-
 export function create(req, res, next) {
   let values = _.omit(req.allParams(), 'id');
 
-  sails.log.info('AuthService.signup(). Creating user');
+  sails.log.info('UserController.signup(). Creating user');
 
   return User.create(values)
-    .then(() => {
-      AuthService.signin((e, jwt) => {
-        sails.log.info('User created successfully. Redirecting to /dashboard');
-        return res.redirect('/dashboard');
+    .then(user => {
+      AuthService.local(req, res, function (err, response) {
+        if (err) {
+          sails.log.error("user failed authentication after begin created. Something went terrible wrong");
+          return res.serverError();
+        } else {
+          return res.redirect("/dashboard");
+        }
       });
     })
     .catch((e) => {
@@ -29,31 +29,10 @@ export function create(req, res, next) {
     });
 }
 
-export function login(req, res, next) {
-  res.view('login');
-}
-
-export function logout(req, res, next) {
-  AuthService.signout(req, res, (e) => {
-    return res.redirect('/');
-  });
-}
-
-export function signin(req, res, next) {
-  AuthService.signin(req, res, function (err, response) {
-    if (err) {
-      req.session.messages.error = [err];
-      return res.redirect('/login');
-    } else {
-      return res.redirect("/dashboard");
-    }
-  })
-}
-
 export function dashboard(req, res, next) {
   sails.log.verbose("UserController.dashboard()");
 
-  ArtistsAssets.find({userId: req.user.id})
+  ArtistAsset.find({userId: req.user.id})
     .then(artistsAssets => {
       return res.view("dashboard", {
         artistsAssets: artistsAssets

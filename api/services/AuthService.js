@@ -12,7 +12,7 @@ import passport from 'passport';
  * @param res
  * @param next
  */
-export function signin(req, res, next) {
+export function local(req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     var error = err || info;
 
@@ -29,7 +29,7 @@ export function signin(req, res, next) {
   })(req, res, next);
 }
 
-export function signout(req, res, next) {
+export function logout(req, res, next) {
   try {
     req.user = false;
     res.locals.user = false;
@@ -41,14 +41,6 @@ export function signout(req, res, next) {
   }
 
   return next(null);
-}
-
-/**
- * Sign up by email\password
- * @param req
- * @param res
- */
-export function signup(req, res) {
 }
 
 export function signToken(user) {
@@ -72,19 +64,4 @@ export function social(req, res) {
     req.user = user;
     passport.authenticate(strategyName, _.partial(sails.config.passport.onPassportAuth, req, res))(req, res);
   })(req, res);
-}
-
-/**
- * Accept JSON Web Token and updates with new one
- * @param req
- * @param res
- */
-export function refresh_token(req, res) {
-  if (!req.param('token')) return res.badRequest(null, {message: 'You must provide token parameter'});
-
-  let oldDecoded = CipherService.jwt.decodeSync(req.param('token'));
-
-  res.ok({
-    token: CipherService.jwt.encodeSync({id: oldDecoded.id})
-  });
 }

@@ -2,12 +2,12 @@
   <% if (messages && messages.error.length) { %>
   <div class="alert alert-danger" role="alert">
     <ul class="form-notification-box__notifications">
-      <% for(var i = 0; i < messages.error.length; i++) { %>
+      <% messages.error.forEach(function(error) { %>
       <li>
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <%= messages.error[i].message %>
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <%= error.message %>
       </li>
-      <% } %>
+      <% }) %>
     </ul>
   </div>
   <% } %>

@@ -16,7 +16,7 @@ export function create(req, res, next) {
 
   sails.log.info('AuthService.signup(). Creating user');
 
-  return Users.create(values)
+  return User.create(values)
     .then(() => {
       AuthService.signin((e, jwt) => {
         sails.log.info('User created successfully. Redirecting to /dashboard');
@@ -51,7 +51,7 @@ export function signin(req, res, next) {
 }
 
 export function dashboard(req, res, next) {
-  sails.log.verbose("UsersController.dashboard()");
+  sails.log.verbose("UserController.dashboard()");
 
   ArtistsAssets.find({userId: req.user.id})
     .then(artistsAssets => {

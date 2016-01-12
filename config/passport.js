@@ -71,7 +71,7 @@ const SOCIAL_STRATEGY_CONFIG = {
 const _onLocalStrategyAuth = (req, email, password, next) => {
   sails.log.verbose("_onLocalStrategyAuth()");
 
-  Users
+  User
     .findOne({email: email})
     .then(user => {
       if (!user) {
@@ -95,7 +95,7 @@ const _onLocalStrategyAuth = (req, email, password, next) => {
 const _onJwtStrategyAuth = (req, payload, next) => {
   sails.log.verbose("_onJwtStrategyAuth()");
 
-  Users
+  User
     .findOne({id: payload.id})
     .then(user => {
       if (!user) {
@@ -131,7 +131,7 @@ const _onSocialStrategyAuth = (req, accessToken, refreshToken, profile, next) =>
     };
     model.socialProfiles[profile.provider] = profile._json;
 
-    Users
+    User
       .findOrCreate(criteria, model)
       .then(user => {
         if (!user) return next(null, null, sails.config.errors.AUTH_FAILED);

@@ -5,6 +5,7 @@
 
 export default {
   schema: true,
+  tableName: 'users',
 
   attributes: {
     username: {
@@ -50,7 +51,7 @@ export default {
       delete obj.socialProfiles;
 
       return obj;
-    },
+    }
   },
 
   beforeUpdate(values, next) {

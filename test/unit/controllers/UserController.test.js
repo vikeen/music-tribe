@@ -1,4 +1,4 @@
 import { assert } from 'chai';
 
-describe('controllers:UsersController', () => {
+describe('controllers:UserController', () => {
 });

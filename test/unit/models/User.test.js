@@ -6,9 +6,9 @@ const newUser = {
   email: 'modelTest@gmail.com'
 };
 
-describe('models:Users', () => {
+describe('models:User', () => {
   it('Should create new user', done => {
-    Users
+    User
       .create(newUser)
       .then(user => {
         assert.equal(user.username, newUser.username);
@@ -18,7 +18,7 @@ describe('models:Users', () => {
   });
 
   it('Should remove user', done => {
-    Users
+    User
       .destroy({username: newUser.username})
       .then(users => {
         assert.equal(users[0].username, newUser.username);

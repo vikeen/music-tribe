@@ -20,8 +20,6 @@ export default {
   policies: {
     '*': ['checkAuthentication', 'flash'],
 
-    UsersController: {},
-
     PingController: {
       '*': true
     }

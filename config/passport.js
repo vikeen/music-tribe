@@ -10,20 +10,6 @@ import Promise from 'bluebird';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import FacebookTokenStrategy from 'passport-facebook-token';
-//import TwitterTokenStrategy from 'passport-twitter-token';
-//import VKontakteTokenStrategy from 'passport-vkontakte-token';
-//import FoursquareTokenStrategy from 'passport-foursquare-token';
-//import GitHubTokenStrategy from 'passport-github-token';
-//import InstagramTokenStrategy from 'passport-instagram-token';
-//import PayPalTokenStrategy from 'passport-paypal-token';
-//import RedditTokenStrategy from 'passport-reddit-token';
-//import SoundCloudTokenStrategy from 'passport-soundcloud-token';
-//import WindowsLiveTokenStrategy from 'passport-windows-live-token';
-//import TwitchTokenStrategy from 'passport-twitch-token';
-//import YandexTokenStrategy from 'passport-yandex-token';
-//import AmazonTokenStrategy from 'passport-amazon-token';
-//import GooglePlusTokenStrategy from 'passport-google-plus-token';
-//import YahooTokenStrategy from 'passport-yahoo-token';
 
 /**
  * Configuration object for local strategy
@@ -117,6 +103,7 @@ const _onJwtStrategyAuth = (req, payload, next) => {
  * @private
  */
 const _onSocialStrategyAuth = (req, accessToken, refreshToken, profile, next) => {
+  sails.log.verbose("_onSocialStrategyAuth()");
   if (!req.user) {
     let criteria = {};
     criteria['socialProfiles.' + profile.provider + '.id'] = profile.id;
@@ -153,21 +140,24 @@ export default {
      * @param {Object} error Object with error info
      * @param {Object} user User object
      * @param {Object} info Information object
+     * @param {Function} next
      * @returns {*}
      * @private
      */
-    onPassportAuth(req, res, error, user, info) {
-      sails.log.verbose("onPassportAuth()");
-      return new Promise((resolve, reject) => {
-        if (error || !user) {
-          sails.log.error(error || info);
-          return reject(error || info);
-        }
+    onPassportAuth(req, res, error, user, info, next) {
+      if (error || !user) {
+        sails.log.error(error);
+        return next(error, false);
+      }
 
-        return {
-          token: CipherService.jwt.encodeSync({id: user.id}),
-          user: user
-        }
+      sails.log.verbose("user authentication successful", {
+        token: CipherService.jwt.encodeSync({id: user.id}),
+        user: user
+      });
+
+      return next(false, {
+        token: CipherService.jwt.encodeSync({id: user.id}),
+        user: user
       });
     }
   }
@@ -175,27 +165,15 @@ export default {
 
 passport.use(new LocalStrategy(_.assign({}, LOCAL_STRATEGY_CONFIG), _onLocalStrategyAuth));
 passport.use(new JwtStrategy(_.assign({}, JWT_STRATEGY_CONFIG), _onJwtStrategyAuth));
-passport.use(new FacebookTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth));
-//passport.use(new TwitterTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new
-// VKontakteTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new
-// FoursquareTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new GitHubTokenStrategy(_.assign({},
-// SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth)); passport.use(new
-// InstagramTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new PayPalTokenStrategy(_.assign({},
-// SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth)); passport.use(new
-// RedditTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new
-// SoundCloudTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new
-// WindowsLiveTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new TwitchTokenStrategy(_.assign({},
-// SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth)); passport.use(new
-// YandexTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new AmazonTokenStrategy(_.assign({},
-// SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth)); passport.use(new
-// GooglePlusTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG),
-// _onSocialStrategyAuth)); passport.use(new YahooTokenStrategy(_.assign({},
-// SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth));
+//passport.use(new FacebookTokenStrategy(_.assign({}, SOCIAL_STRATEGY_CONFIG), _onSocialStrategyAuth));
+
+passport.use(new FacebookTokenStrategy({
+    clientID: process.env.MUSIC_TRIBE_FACEBOOK_APP_ID,
+    clientSecret: process.env.MUSIC_TRIBE_FACEBOOK_APP_SECRET
+  },
+  function (accessToken, refreshToken, profile, done) {
+    console.log("authentication complete");
+    console.log(arguments);
+    done(accessToken, refreshToken, profile);
+  }
+));

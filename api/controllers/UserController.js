@@ -3,9 +3,7 @@
  * @description :: Server-side logic for manage users
  */
 
-import fs from 'fs';
 import _ from 'lodash';
-import AWS from 'aws-sdk';
 
 export function create(req, res, next) {
   let values = _.omit(req.allParams(), 'id');

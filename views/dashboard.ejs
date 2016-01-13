@@ -1,34 +1,48 @@
 <div class="container">
-  <h1>This is the user's dashboard</h1>
+  <h1 class="page-header">Dashboard</h1>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Upload Assets</h2>
-      <form class="form" method="POST" action="/file" enctype="multipart/form-data">
-        <div class="form-group">
-          <input id="song" name="song" type="file" placeholder="Add Song" multiple="multiple">
+  <div class="panel panel-default panel-primary">
+    <div class="panel-heading"><%- __('Add Media Asset') %></div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="form" method="POST" action="/upload" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="title" class="control-label">Title</label>
+              <input id="title" name="title" type="text" class="form-control"/>
+            </div>
+            <!--<div class="progress">-->
+            <!--<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">-->
+            <!--<span class="sr-only">45% Complete</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+              <label for="file" class="control-label">Media File</label>
+              <input id="file" name="file" type="file" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Upload</button>
-        </div>
-      </form>
-    </div>
-    <section class="col-xs-12 asset-list">
-      <h2>Current Assets</h2>
-      <% if (artistsAssets.length) { %>
-      <% for(var i = 0; i < artistsAssets.length; i++) { %>
-      <% var asset = artistsAssets[i]; %>
-      <% if(i % 4 === 0) { %>
-      <%- '<div class="row">' %>
-      <% } %>
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <%- include artist-asset.ejs %>
       </div>
-      <% if(i % 4 === 3) { %>
-      <%- '</div>' %>
-      <% } %>
-      <% } %>
-      <% } %>
-    </section>
+    </div>
   </div>
+  <section class="asset-list">
+    <h2 class="page-header">Current Assets</h2>
+    <% if (artistsAssets.length) { %>
+    <% for(var i = 0; i < artistsAssets.length; i++) { %>
+    <% var asset = artistsAssets[i]; %>
+    <% if(i % 4 === 0) { %>
+    <%- '<div class="row">' %>
+    <% } %>
+    <div class="col-xs-6 col-md-3">
+      <%- include artist-asset.ejs %>
+    </div>
+    <% if(i % 4 === 3) { %>
+    <%- '</div>' %>
+    <% } %>
+    <% } %>
+    <% } %>
+  </section>
 </div>

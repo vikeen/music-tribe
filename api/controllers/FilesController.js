@@ -5,16 +5,19 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import AWS from 'aws-sdk';
 import skipperS3 from 'skipper-s3';
 
-export function create(req, res, next) {
-  // @TODO: if something is wrong with the configuration then the whole
-  // application dies. Should we be catching or be using domains?
-  req.file('song').upload({
+export function upload(req, res, next) {
+  var originalFileName = req.file('file')._files[0].stream.filename,
+    contentType = FileService.getContentTypeFromFileExtention(originalFileName);
+
+  sails.log.verbose("attempting to upload file [%s] as file type [%s]", originalFileName, contentType);
+
+  req.file('file').upload({
     adapter: skipperS3,
     key: sails.config.aws.s3.accessKeyId,
     secret: sails.config.aws.s3.secretAccessKey,
+    dirname: contentType,
     bucket: 'music-tribe'
   }, function (error, updoadedFiles) {
     if (error) {
@@ -22,6 +25,9 @@ export function create(req, res, next) {
     }
 
     let assets = updoadedFiles.map(function (file) {
+      // TODO: determine what are values here that should be stored
+      // TODO: move this to a service that transforms s3 storage response
+      //       into local database format
       return {
         userId: req.user.id,
         fileName: file.filename,
@@ -34,7 +40,8 @@ export function create(req, res, next) {
 
     ArtistAsset.create(assets)
       .then(function () {
-        sails.log.verbose("successfully added assets");
+        sails.log.info("successfully added asset [%s] to artist [%s]", originalFileName, req.user.id);
+        // TODO: send notification to user that upload was successful
         return res.redirect("/dashboard");
       })
       .catch((e) => {

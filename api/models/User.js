@@ -3,6 +3,8 @@
  * @description :: Model for storing users
  */
 
+import HashService from '../services/HashService';
+
 export default {
   schema: true,
   tableName: 'users',
@@ -56,30 +58,30 @@ export default {
 
   beforeUpdate(values, next) {
     if (values.hasOwnProperty('password') === false) {
-      return next();
+      return next(true, null);
     }
 
     if (/^\$2[aby]\$[0-9]{2}\$.{53}$/.test(values.password)) {
-      return next();
+      return next(true, null);
     }
 
     return HashService.bcrypt.hash(values.password)
       .then(hash => {
         values.password = hash;
-        next();
+        next(null, values);
       })
       .catch(next);
   },
 
   beforeCreate(values, next) {
     if (values.hasOwnProperty('password') === false) {
-      return next();
+      return next(true, null);
     }
 
     return HashService.bcrypt.hash(values.password)
       .then(hash => {
         values.password = hash;
-        next();
+        next(null, values);
       })
       .catch(next);
   }

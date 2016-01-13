@@ -6,6 +6,7 @@
 
 export default {
   port: 3000,
+  appUrl: 'http://localhost:3000',
   log: {
     level: 'verbose'
   },

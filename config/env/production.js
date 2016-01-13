@@ -5,6 +5,7 @@
 
 export default {
   port: 80,
+  appUrl: 'http://www.musictribe.org',
   log: {
     level: 'info'
   },

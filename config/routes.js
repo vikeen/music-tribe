@@ -31,9 +31,10 @@ export default {
     'GET /login': 'AuthController.login',
     'GET /logout': 'AuthController.logout',
     'POST /auth/local': 'AuthController.local',
-    'GET /auth/social/:type': 'AuthController.social',
+    'GET /auth/facebook': 'AuthController.facebook',
+    'GET /auth/facebook/callback': 'AuthController.facebookCallback',
 
-    'POST /file': 'FilesController.create',
+    'POST /upload': 'FilesController.upload',
 
     'GET /ping': 'PingController.index'
   }

@@ -1,4 +1,3 @@
-./test/bootstrap.js
 ./test/unit/**/*.test.js
---reporter nyan
+--ui tdd
 --recursive

@@ -1,5 +1,5 @@
 /**
- * isAuthenticated
+ * checkAuthentication
  * @description :: Policy that inject user in `req` via JSON Web Token
  */
 

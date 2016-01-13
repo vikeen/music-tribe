@@ -2,8 +2,8 @@
   #ASSET
 \------------------------*/
 
-@assetHeight: 325px;
-@assetHeightLg: 250px;
+@assetHeight: 125px;
+@assetHeightMd: 175px;
 
 .asset {
   min-height: @assetHeight;
@@ -47,14 +47,26 @@
   }
 }
 
-@media (min-width: @screen-lg-min) {
+//@media (min-width: @screen-lg-min) {
+//  .asset {
+//    min-height: @assetHeightLg;
+//  }
+//
+//  .asset__content {
+//    .asset__wrapper {
+//      height: @assetHeightLg;
+//    }
+//  }
+//}
+
+@media (min-width: @screen-md-min) {
   .asset {
-    min-height: @assetHeightLg
+    min-height: @assetHeightMd;
   }
 
   .asset__content {
     .asset__wrapper {
-      height: @assetHeightLg;
+      height: @assetHeightMd;
     }
   }
 }
